@@ -42,7 +42,7 @@ Built as a single-file, zero-dependency HTML/CSS/JS site with a dark editorial a
 
 **index.html**          # Entire site — styles, markup, and scripts in one file
 
-Sections: Hero → About → Projects → Experience → Education → Hobbies → Contact
+Sections: Hero → About → Experience →  Projects → Publications → Education → Hobbies → Contact
 
 ---
 
