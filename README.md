@@ -24,7 +24,7 @@ Built as a single-file, zero-dependency HTML/CSS/JS site with a dark editorial a
 | 🗺️ **Where Should You Work?** | Streamlit, Open-Meteo, BLS OEWS | City comparison engine for tech professionals — Harvard Hackathon |
 | 📈 **FinVAR: The LLM Version** | LangChain, Chainlit, SEC Edgar | Fiduciary-grade stock risk analysis via agentic LLM pipeline |
 | 🌍 **NEWISE_GIS** | GeoPandas, Folium, GitHub Pages | Interactive New England regional data visualization |
-| 📊 **FinVAR Classic** | Streamlit, Gradient Boosting | Financial metric visualizer with EPS prediction model |
+| 📊 **FinVAR** | Streamlit, Gradient Boosting | Financial metric visualizer with EPS prediction model |
 | 🏛️ **Appropriations Equity Analysis** | Python, Folium, Looker Studio | Federal funding equity mapping for Sen. Markey's office |
 
 ---
