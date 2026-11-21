@@ -6,6 +6,10 @@
   <title>Atul Aravind Das — Data Scientist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    // Apply the saved theme before first paint to avoid a flash of the wrong colours
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,7 +28,68 @@
       --font-display: 'Cormorant Garamond', serif;
       --font-body: 'Outfit', sans-serif;
       --font-mono: 'DM Mono', monospace;
+      --nav-bg: rgba(8,10,15,0.85);
+      --nav-overlay: rgba(8,10,15,0.98);
+      --tint: rgba(255,255,255,0.04);
+      color-scheme: dark;
     }
+
+    /* ═══ LIGHT THEME ═══ */
+    [data-theme="light"] {
+      --bg: #f7f4ee;
+      --bg2: #efebe3;
+      --bg3: #e7e2d8;
+      --surface: #ffffff;
+      --border: rgba(20,24,32,0.10);
+      --accent: #9a7535;
+      --accent2: #2f7a9c;
+      --text: #1a1d24;
+      --text-muted: #4a5162;
+      --text-dim: #6b7385;
+      --nav-bg: rgba(247,244,238,0.85);
+      --nav-overlay: rgba(247,244,238,0.98);
+      --tint: rgba(20,24,32,0.03);
+      color-scheme: light;
+    }
+
+    [data-theme="light"] body::before { opacity: 0.15; }
+    [data-theme="light"] .project-card:hover { box-shadow: 0 20px 50px rgba(20,24,32,0.10); }
+    [data-theme="light"] .hero-photo { box-shadow: 0 0 60px rgba(154,117,53,0.15), 0 20px 50px rgba(20,24,32,0.15); }
+    [data-theme="light"] .project-image img { opacity: 0.9; }
+
+    /* Smooth colour change only while switching, so page load and hovers are unaffected */
+    html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+      transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 101;
+    }
+
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, transform 0.3s;
+    }
+
+    .theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: rotate(15deg); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .icon-sun { display: none; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
     html { scroll-behavior: smooth; }
 
@@ -59,7 +124,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 4rem;
-      background: rgba(8,10,15,0.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s;
@@ -437,7 +502,7 @@
     .skill-tag {
       font-size: 0.78rem;
       padding: 0.3rem 0.8rem;
-      background: rgba(255,255,255,0.04);
+      background: var(--tint);
       border: 1px solid var(--border);
       border-radius: 3px;
       color: var(--text-muted);
@@ -906,7 +971,7 @@
         display: none;
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(8,10,15,0.98);
+        background: var(--nav-overlay);
         backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: center;
@@ -998,9 +1063,15 @@
       <li><a href="https://calendly.com/atularavinddas" target="_blank" class="nav-cta" onclick="closeNav()">Let's Team Up</a></li>
       
     </ul>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -3467,6 +3538,27 @@ AAAAAAAAAAAAAAAAAE+gJ9AKACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//Z" alt="AbsoluteC
   </footer>
 
   <script>
+    function syncThemeButton() {
+      const btn = document.getElementById('themeToggle');
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const label = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.classList.add('theme-anim');
+      if (next === 'light') root.setAttribute('data-theme', 'light');
+      else root.removeAttribute('data-theme');
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncThemeButton();
+      setTimeout(() => root.classList.remove('theme-anim'), 400);
+    }
+
+    syncThemeButton();
+
     function toggleNav() {
       const nav = document.getElementById('navLinks');
       const btn = document.getElementById('hamburger');
