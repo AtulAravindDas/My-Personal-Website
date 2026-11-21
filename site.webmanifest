@@ -1,0 +1,21 @@
+{
+  "name": "Atul Aravind Das",
+  "short_name": "Atul Das",
+  "description": "Software engineer at Temenos (Transact, wealth) in Orlando. MS Data Science, Boston University. Applied AI for finance, including FinVAR, an LLM risk tool.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080a0f",
+  "theme_color": "#080a0f",
+  "icons": [
+    {
+      "src": "/assets/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
